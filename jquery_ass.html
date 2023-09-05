@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+  <input type="password" id="password" placeholder="Enter your password">
+    <div id="password-strength"></div>
+
+    <script>
+      $(document).ready(function() {
+          $('#password').on('input', function() {
+              var password = $(this).val();
+              var strength = 0;
+              
+              // Check for various conditions to determine password strength
+              if (password.length >= 8) {
+                  strength++;
+              }
+              if (password.match(/[a-z]/)) {
+                  strength++;
+              }
+              if (password.match(/[A-Z]/)) {
+                  strength++;
+              }
+              if (password.match(/[0-9]/)) {
+                  strength++;
+              }
+              if (password.match(/[!@#$%^&*]/)) {
+                  strength++;
+              }
+              
+              // Update the visual display based on password strength
+              if (strength === 0) {
+                  $('#password-strength').text('Weak');
+                } else if (strength === 1 || strength === 2) {
+            $('#password-strength').text('Medium');
+        } else {
+            $('#password-strength').text('Strong');
+        }
+    });
+});
+</script>
+</body>
+</html>
